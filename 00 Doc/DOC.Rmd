@@ -27,3 +27,23 @@ Questions Raised by Data:
 The KPI uses parameters set in Tableau. The max low KPI is set at .2, while the max medium KPI is set at .4, and anything higher is coded as "high". 
 
 ![](./CrossTab.jpg)
+
+###Plot #2: Bar Chart with Reference Line
+This bar chart compares average charges and payments of different medical precedures.  Between the procedures there are covered charges, medicare payments, and total payments out of pocket.  We see a correlation with all procedures that covered charges take most of the cost.  I added a calculated field of average difference between total payments and medicare payments to see how much on average comes directly out of pocket.  We can see Intracranial Hemorrhage procedures are by far the most expensive but for out of pocket payments its almost just as bad as Transient Ischemia.  
+
+Questions Raised by Data:
+1. Why are out of pocket expenses for Transient Ischemia just as much as the more expensive overall Intracranial Hemorrhage?
+2. Why is the cost so high if so much of the cost is covered from the beginning?
+
+
+![](./Bar Chart.jpg)
+
+###Plot #3: ScatterPlot
+This scatterplot compares the percentile of the average difference (average difference between average total payments and average medicare payments, so out of pocket payments) and total discharges.  There is an interesting set of lines visible from the plot.  They start nearly at the 0th percentile and run to about the 60th percentile.  I honestly don't understand what they could mean.  But the plot also shows an interesting drop just before the 70th percentile and from after that looks just scattered.
+
+Questions Raised by Data:
+1. What is with those lines?
+2. Why is there the drop off in the percentiles?
+
+
+![](./Scatter Plot.jpg)
