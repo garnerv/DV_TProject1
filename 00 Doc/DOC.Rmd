@@ -29,10 +29,10 @@ The KPI uses parameters set in Tableau. The max low KPI is set at .2, while the 
 ![](./CrossTab.jpg)
 
 ###Plot #2: Bar Chart with Reference Line
-This bar chart compares average charges and payments of different medical precedures.  Between the procedures there are covered charges, medicare payments, and total payments out of pocket.  We see a correlation with all procedures that covered charges take most of the cost.  I added a calculated field of average difference between total payments and medicare payments to see how much on average comes directly out of pocket.  We can see Intracranial Hemorrhage procedures are by far the most expensive but for out of pocket payments its almost just as bad as Transient Ischemia.  
+This bar chart compares average out of pocket and medicare payments of different medical precedures.  I added a calculated field of average difference between total payments and medicare payments to see how much on average comes directly out of pocket.  I then added a refrence band to show you exactly where that average difference comes from.  We can see Intracranial Hemorrhage procedures are by far the most expensive but for out of pocket payments its not quite as expensive as Extracranial Procedures. 
 
 Questions Raised by Data:
-1. Why are out of pocket expenses for Transient Ischemia just as much as the more expensive overall Intracranial Hemorrhage?
+1. Why are out of pocket expenses for Extracranial Procedures just as expensive as Intracranial Hemorrhage when the total payments reflect differently?
 2. Why is the cost so high if so much of the cost is covered from the beginning?
 
 
