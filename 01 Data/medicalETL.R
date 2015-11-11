@@ -1,4 +1,4 @@
-setwd("/Users/Garner/Documents/DataVisualization/DV_TProject1/01 Data")
+setwd("C:/Users/Wes James/Documents/Data Visualization/DV_TProject1/01 Data")
 file_path <- "medicaldataclean.csv"
 # str(df) # Uncomment this and  run just the lines to here to get column types to use for getting the list of measures.
 

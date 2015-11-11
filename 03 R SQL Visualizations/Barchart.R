@@ -5,6 +5,9 @@ df
 summary(df)
 head(df)
 
-df <- MEDICALDATA %>% group_by(DRGDEFINITION, AVERAGETOTALPAYMENTS) %>% summarize(AVG_DIFF = mean(Averagetotalpayments - Averagemedicarepayments)) %>% rename(COLOR=color, CLARITY=clarity)
+df2 <- df %>% mutate(AVG_DIFFERENCE = (AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS)) %>% group_by(DRGDEFINITION, AVERAGETOTALPAYMENTS, AVERAGEMEDICAREPAYMENTS, AVERAGECOVEREDCHARGES) %>% summarize(AVG_DIFF = mean(AVG_DIFFERENCE)) %>% View() 
+
+#rename(COLOR=color, CLARITY=clarity)
 # df1 <- df %>% ungroup %>% group_by(CLARITY) %>% summarize(WINDOW_AVG_PRICE=mean(AVG_PRICE))
 # df <- inner_join(df, df1, by="CLARITY")
+

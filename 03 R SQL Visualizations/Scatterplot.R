@@ -5,4 +5,4 @@ df
 summary(df)
 head(df)
 
-
+df %>% mutate(AVG_DIFFERENCE = cume_dist(mean(AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS))) %>% ggplot(aes(x = AVG_DIFFERENCE, y = TOTALDISCHARGES)) + labs(title="Medical Data \n Percentiles vs Total Discharges" + labs(x="Percentile of Average Differences", y=paste("Total Discharges")))
