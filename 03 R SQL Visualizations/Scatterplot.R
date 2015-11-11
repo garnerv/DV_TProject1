@@ -5,4 +5,22 @@ df
 summary(df)
 head(df)
 
-df %>% mutate(AVG_DIFFERENCE = cume_dist(mean(AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS))) %>% ggplot(aes(x = AVG_DIFFERENCE, y = TOTALDISCHARGES)) + labs(title="Medical Data \n Percentiles vs Total Discharges" + labs(x="Percentile of Average Differences", y=paste("Total Discharges")))
+df %>% mutate(AVG_DIFFERENCE = AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS, AVG_DIFF = cume_dist(AVG_DIFFERENCE)) %>% ggplot(aes(x = AVG_DIFF, y = TOTALDISCHARGES)) + geom_point(size = 3) + labs(title="Medical Data \n Percentiles vs Total Discharges",  labs(x="Percentile of Average Differences", y=paste("Total Discharges")))
+
+require(extrafont)
+ggplot() + 
+  coord_cartesian() + 
+  scale_x_continuous() +
+  scale_y_continuous() +
+  #facet_wrap(~SURVIVED) +
+  labs(title='Titanic') +
+  labs(x="Age", y=paste("Fare")) +
+  layer(data=df, 
+        mapping=aes(x=as.numeric(as.character(AVG_DIFF)), y=as.numeric(as.character(TOTALDISCHARGES))), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="point",
+        geom_params=list(), 
+        #position=position_identity()
+        position=position_jitter(width=0.3, height=0)
+  )
