@@ -41,7 +41,7 @@ ggplot() +
         geom_params=list(colour="blue"), 
         position=position_identity()
   ) +
-  layer(data=df, 
+  layer(data=df4, 
         mapping=aes(x=AVG_DIFF, y=AVG_DIFFERENCE), 
         stat="identity", 
         stat_params=list(), 
