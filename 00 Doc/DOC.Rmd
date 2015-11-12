@@ -38,6 +38,11 @@ Reproduced in R:
 source("../03 R SQL Visualizations/Crosstab.R",  echo = TRUE)
 ```
 
+
+
+INCLUDED IS A MORE READABLE IMAGE, SINCE R PRODUCED A CRAPPY ONE:
+![](./CrosstabRVis.jpeg)
+
 ###Plot #2: Bar Chart with Reference Line
 This bar chart compares average out of pocket and medicare payments of different medical precedures.  I added a calculated field of average difference between total payments and medicare payments to see how much on average comes directly out of pocket.  I then added a refrence band to show you exactly where that average difference comes from.  We can see Intracranial Hemorrhage procedures are by far the most expensive but for out of pocket payments its not quite as expensive as Extracranial Procedures. 
 
@@ -50,7 +55,7 @@ Questions Raised by Data:
 
 Reproduced in R:
 ```{r}
-source("../03 R SQL Visualizations/Barchart.R")
+source("../03 R SQL Visualizations/Barchart.R", echo = TRUE)
 ```
 
 ###Plot #3: ScatterPlot
@@ -64,5 +69,5 @@ Questions Raised by Data:
 ![](./Scatter Plot.jpg)
 
 ```{r}
-source("../03 R SQL Visualizations/Scatterplot.R")
+source("../03 R SQL Visualizations/Scatterplot.R", echo = TRUE)
 ```
