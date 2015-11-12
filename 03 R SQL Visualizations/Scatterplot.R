@@ -1,21 +1,24 @@
 
 df <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/native/?query="select * from MEDICALDATA"'),httpheader=c(DB='jdbc:oracle:thin:@sayonara.microlab.cs.utexas.edu:1521:orcl', USER='C##cs329e_gv4353', PASS='orcl_gv4353', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
-df
+View(df)
 
-summary(df)
-head(df)
+#summary(df)
+#head(df)
 
-df %>% mutate(AVG_DIFFERENCE = AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS, AVG_DIFF = cume_dist(AVG_DIFFERENCE)) %>% ggplot(aes(x = AVG_DIFF, y = TOTALDISCHARGES)) + geom_point(size = 3) + labs(title="Medical Data \n Percentiles vs Total Discharges",  labs(x="Percentile of Average Differences", y=paste("Total Discharges")))
+df2 <- df %>% mutate(AVG_DIFFERENCE = AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS, AVG_DIFF = cume_dist(AVG_DIFFERENCE))
+
+df %>% mutate(AVG_DIFFERENCE = AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS, AVG_DIFF = cume_dist(AVG_DIFFERENCE)) %>% mutate(AVG_DIFF = AVG_DIFF) %>% ggplot(aes(x = AVG_DIFF, y = TOTALDISCHARGES)) + geom_point(size = 3) + labs(title="Medical Data \n Percentiles vs Total Discharges",  labs(x="Percentile of Average Differences", y=paste("Total Discharges"))) 
+
+View(df2)
 
 require(extrafont)
 ggplot() + 
   coord_cartesian() + 
   scale_x_continuous() +
   scale_y_continuous() +
-  #facet_wrap(~SURVIVED) +
-  labs(title='Titanic') +
-  labs(x="Age", y=paste("Fare")) +
-  layer(data=df, 
+  labs(title='Medical Data \n Percentiles vs Total Discharges') +
+  labs(x="Percentile of Average Difference", y=paste("Total Discharges")) +
+  layer(data=df2, 
         mapping=aes(x=as.numeric(as.character(AVG_DIFF)), y=as.numeric(as.character(TOTALDISCHARGES))), 
         stat="identity", 
         stat_params=list(), 
