@@ -5,18 +5,11 @@ df <- data.frame(fromJSON(getURL(URLencode('skipper.cs.utexas.edu:5001/rest/nati
 #summary(df)
 #head(df)
 
-# df <- diamonds %>% group_by(color, clarity) %>% summarize(AVG_PRICE = mean(price)) %>% rename(COLOR=color, CLARITY=clarity)
-# df1 <- df %>% ungroup %>% group_by(CLARITY) %>% summarize(WINDOW_AVG_PRICE=mean(AVG_PRICE))
-# df <- inner_join(df, df1, by="CLARITY")
-
-#spread(df, COLOR, AVG_PRICE) %>% View
-
 df2 <- df %>% mutate(AVG_DIFFERENCE = (AVERAGETOTALPAYMENTS - AVERAGEMEDICAREPAYMENTS), AVG_DIFF = mean(AVG_DIFFERENCE)) %>% group_by(DRGDEFINITION, AVERAGETOTALPAYMENTS, AVERAGEMEDICAREPAYMENTS, AVG_DIFFERENCE) %>% summarize(AVG_DIFFER = mean(AVG_DIFFERENCE)) 
 
 df3 <- df2 %>% ungroup %>% group_by(DRGDEFINITION) %>% summarise(AVG_DIFF = mean(AVG_DIFFER))
 
 df4 <- inner_join(df2, df3, by="DRGDEFINITION")
-View(df4)
 
 ggplot() + 
   coord_cartesian() + 
