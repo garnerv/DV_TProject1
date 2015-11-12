@@ -44,5 +44,5 @@ ggplot() +
         geom_params=list(alpha=0.5), 
         position=position_identity()
   ) +
-  theme(text = element_text(size=9),
+  theme(text = element_text(size=10),
         axis.text.x = element_text(angle=45, vjust=1))
