@@ -17,28 +17,29 @@ ggplot() +
   scale_y_continuous() +
   facet_wrap(~DRGDEFINITION, ncol=1) +
   labs(title='Medical Data \n Procedure Cost Comparison ') +
-  labs(x=paste("Measure Names"), y=paste("AVG_PRICE")) +
+  labs(x=paste("Average Price"), y=paste("Measure Names")) +
   layer(data=df4, 
-        mapping=aes(x=AVERAGETOTALPAYMENTS, y=AVG_DIFFERENCE), 
+        mapping=aes(x=AVERAGETOTALPAYMENTS, y=AVG_DIFFER), 
         stat="identity", 
         stat_params=list(), 
         geom="bar",
         geom_params=list(colour="blue"), 
         position=position_identity()
-  ) + 
+  ) + coord_flip() +
   layer(data=df4, 
-        mapping=aes(x=AVERAGEMEDICAREPAYMENTS, y=AVG_DIFFERENCE), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="bar",
-        geom_params=list(colour="blue"), 
-        position=position_identity()
-  ) +
-  layer(data=df4, 
-        mapping=aes(x=AVG_DIFF, y=AVG_DIFFERENCE), 
+        mapping=aes(x=AVERAGEMEDICAREPAYMENTS, y=AVG_DIFFER), 
         stat="identity", 
         stat_params=list(), 
         geom="bar",
         geom_params=list(colour="blue"), 
         position=position_identity()
   ) 
+  layer(data=df4, 
+        mapping=aes(x=AVG_DIFF, y=AVG_DIFFER), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="bar",
+        geom_params=list(colour="blue"), 
+        position=position_identity()
+  )
+
