@@ -50,9 +50,19 @@ ggplot() +
         geom="text",
         geom_params=list(colour="black", hjust=-0.5), 
         position=position_identity()
+  ) 
+
+
+
+
++
+  layer(data=df4, 
+        mapping=aes(yintercept = aggregate(mean(AVERAGEMEDICAREPAYMENTS))), 
+        geom="hline",
+        geom_params=list(colour="purple")
   ) +
   layer(data=df4, 
-        mapping=aes(x=paste("AVERAGEMEDICAREPAYMENTS"), y=AVERAGEMEDICAREPAYMENTS, label=mean(AVERAGEMEDICAREPAYMENTS)), 
+        mapping=aes(x=paste("AVERAGEMEDICAREPAYMENTS"), y=AVERAGEMEDICAREPAYMENTS, label=sum(AVG_DIFF)), 
         stat="identity", 
         stat_params=list(), 
         geom="text",
@@ -60,7 +70,7 @@ ggplot() +
         position=position_identity()
   ) +
   layer(data=df4, 
-        mapping=aes(x=paste("AVERAGETOTALPAYMENTS"), y=AVERAGETOTALPAYMENTS, label=mean(AVERAGETOTALPAYMENTS)), 
+        mapping=aes(x=paste("AVERAGETOTALPAYMENTS"), y=AVERAGETOTALPAYMENTS, label=sum(AVG_DIFF)), 
         stat="identity", 
         stat_params=list(), 
         geom="text",
