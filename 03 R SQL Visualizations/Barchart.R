@@ -52,15 +52,16 @@ ggplot() +
         position=position_identity()
   ) 
 
+# The graph I like stops here
 
 
 
-+
++ # This layer is for a reference line
   layer(data=df4, 
         mapping=aes(yintercept = aggregate(mean(AVERAGEMEDICAREPAYMENTS))), 
         geom="hline",
         geom_params=list(colour="purple")
-  ) +
+  ) + # This layer  was for the number the medicare bar stops at
   layer(data=df4, 
         mapping=aes(x=paste("AVERAGEMEDICAREPAYMENTS"), y=AVERAGEMEDICAREPAYMENTS, label=sum(AVG_DIFF)), 
         stat="identity", 
@@ -68,7 +69,7 @@ ggplot() +
         geom="text",
         geom_params=list(colour="black", hjust=-0.5), 
         position=position_identity()
-  ) +
+  ) + # This layer is for the number the total bar stops at
   layer(data=df4, 
         mapping=aes(x=paste("AVERAGETOTALPAYMENTS"), y=AVERAGETOTALPAYMENTS, label=sum(AVG_DIFF)), 
         stat="identity", 
