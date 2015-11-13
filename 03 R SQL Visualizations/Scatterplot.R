@@ -21,4 +21,4 @@ ggplot() +
         geom_params=list(), 
         #position=position_identity()
         position=position_jitter(width=0.3, height=0)
-  )
+)

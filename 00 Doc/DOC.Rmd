@@ -22,6 +22,11 @@ For analysis we are using a database of medical data containing information on t
 source("../require.R",  echo = TRUE)
 ```
 
+###Summary and Subset of Main Data
+```{r}
+source("./summary.R",  echo = TRUE)
+```
+
 ###Plot #1: Crosstab w/ KPI
 Our crosstab examines common medical procedures against the state they're performed in. Data analyzed is the ratio of total payments to the procedure over the total US dollar amount billed to the patient for the procedure. As shown by the table, hospitals are rarely receiving as little as half of their total charges, and most frequently are receving between 20%-40% of their charges. Some states have very low payment ratios across all types of medical procedures, such as California.
 
@@ -54,9 +59,7 @@ Questions Raised by Data:
 ![](./Bar Chart.jpg)
 
 Reproduced in R:
-```{r}
-source("../03 R SQL Visualizations/Barchart.R", echo = TRUE)
-```
+
 
 ###Plot #3: ScatterPlot
 This scatterplot compares the percentile of the average difference (average difference between average total payments and average medicare payments, so out of pocket payments) and total discharges.  There is an interesting set of lines visible from the plot.  They start nearly at the 0th percentile and run to about the 60th percentile.  I honestly don't understand what they could mean.  But the plot also shows an interesting drop just before the 70th percentile and from after that looks just scattered.
@@ -70,4 +73,19 @@ Questions Raised by Data:
 
 ```{r}
 source("../03 R SQL Visualizations/Scatterplot.R", echo = TRUE)
+```
+
+
+###Plot #4: Blended Data in a Scatter Plot
+In our blended dataset, we have a table which contains our original medical data, and a new table which has been inner joined by state. The new table added information such as the number of people on medicare in the state, and the average medical debt per citizen by state. The scatter plot we made compares the number of people on medicare by average total payments. Note: Each vertical column of points represents a number of people in the state. There are many more average total payments points to compare against this one number because there are many different providers which reported different average total payments per state. 
+
+The data shows no distinct correlation between the number of people on medicare in the state and the average total payments by procedure. However, it can be seen with clear distinction that Intracranial hemmorhages have the highest average total payments between the patient and medicare combined, across all states, regardless of how many people are on medicare in the state.
+
+Plot generated in tableau:
+![](./Scatter Plot.jpg)
+
+
+Plot generated in R:
+```{r}
+source("../03 R SQL Visualizations/BlendedScatterplot.R", echo = TRUE)
 ```
