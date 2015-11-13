@@ -41,4 +41,4 @@ ggplot() +
         geom="bar",
         geom_params=list(colour="blue"), 
         position=position_identity()
-  ) 
+  )
