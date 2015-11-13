@@ -12,34 +12,58 @@ df3 <- df2 %>% ungroup %>% group_by(DRGDEFINITION) %>% summarise(AVG_DIFF = mean
 df4 <- inner_join(df2, df3, by="DRGDEFINITION")
 
 ggplot() + 
-  coord_cartesian() + 
-  #scale_x_discrete() +
-  scale_x_continuous() +
+  #coord_cartesian() + 
+  scale_x_discrete() +
+  #scale_x_continuous() +
   scale_y_continuous() +
   facet_wrap(~DRGDEFINITION, ncol=1) +
   labs(title='Medical Data \n Procedure Cost Comparison ') +
   labs(x=paste("Average Price"), y=paste("Measure Names")) +
   layer(data=df4, 
-        mapping=aes(x=sum(AVERAGETOTALPAYMENTS), y=AVG_DIFFER), 
+        mapping=aes(x=paste("AVERAGETOTALPAYMENTS"), y=AVERAGETOTALPAYMENTS), 
         stat="identity", 
         stat_params=list(), 
         geom="bar",
-        geom_params=list(colour="blue"), 
+        geom_params=list(colour="red"), 
         position=position_identity()
   ) + coord_flip() +
   layer(data=df4, 
-        mapping=aes(x=sum(AVERAGEMEDICAREPAYMENTS), y=AVG_DIFFER), 
+        mapping=aes(x=paste("AVERAGEMEDICAREPAYMENTS"), y=AVERAGEMEDICAREPAYMENTS), 
         stat="identity", 
         stat_params=list(), 
         geom="bar",
         geom_params=list(colour="blue"), 
         position=position_identity()
   ) +
-layer(data=df4, 
-      mapping=aes(x=sum(AVG_DIFF), y=AVG_DIFFER), 
+  layer(data=df4, 
+      mapping=aes(x=paste("AVG_DIFF"), y=AVG_DIFF), 
       stat="identity", 
       stat_params=list(), 
       geom="bar",
-      geom_params=list(colour="blue"), 
+      geom_params=list(colour="green"), 
       position=position_identity()
-)
+  ) +
+  layer(data=df4, 
+        mapping=aes(x=paste("AVG_DIFF"), y=AVG_DIFF, label=round(AVG_DIFF)), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="text",
+        geom_params=list(colour="black", hjust=-0.5), 
+        position=position_identity()
+  ) +
+  layer(data=df4, 
+        mapping=aes(x=paste("AVERAGEMEDICAREPAYMENTS"), y=AVERAGEMEDICAREPAYMENTS, label=mean(AVERAGEMEDICAREPAYMENTS)), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="text",
+        geom_params=list(colour="black", hjust=-0.5), 
+        position=position_identity()
+  ) +
+  layer(data=df4, 
+        mapping=aes(x=paste("AVERAGETOTALPAYMENTS"), y=AVERAGETOTALPAYMENTS, label=mean(AVERAGETOTALPAYMENTS)), 
+        stat="identity", 
+        stat_params=list(), 
+        geom="text",
+        geom_params=list(colour="black", hjust=-0.5), 
+        position=position_identity()
+  )
